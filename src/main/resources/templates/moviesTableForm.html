@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<style>
+    #content{
+        padding-left: 12.5%;
+        padding-right: 12.5%;
+        padding-top: 20px;
+    }
+    input[type=button] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        float: left;
+        width: auto;
+        height: auto;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .container{
+        text-align: center;
+        width: 100%;
+        height: auto;
+        padding-left: 40%;
+        padding-top: 7px;
+    }
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        align-content: center;
+        text-align: center;
+    }
+    #reviews {
+        font-family: Arial, Helvetica, sans-serif;
+        /*border-collapse: collapse;*/
+        /*width: 75%;*/
+        width: 100%;
+        /*padding-left: 20%;*/
+    }
+    #reviews td, #reviews th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    #reviews tr:nth-child(even){background-color: #f2f2f2;}
+    #reviews tr:hover {background-color: #ddd;}
+    #reviews th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Movies Reviews</title>
+</head>
+<body>
+    <div id="content">
+    <h1>List of Movie Reviews</h1>
+    <table th:object="${moviesList}" id="reviews">
+        <thead>
+            <tr>
+                <th>Movie Title</th>
+                <th>Rating</th>
+                <th>Reviewer name</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tr th:each="movie :${moviesList}">
+            <td  th:text="${movie.getTitle()}"></td>
+            <td  th:text="${movie.getRating()}"></td>
+            <td  th:text="${movie.getPersonName()}"></td>
+            <td  th:text="${movie.getDate()}"></td>
+            <td  th:text="${movie.getTime()}"></td>
+        </tr>
+    </table>
+        <div class="container">
+        <input type="button" value="Click here to enter your review" onclick="location.href = '/movies/new'"/>
+        </div>
+    </div>
+</body>
+</html>
